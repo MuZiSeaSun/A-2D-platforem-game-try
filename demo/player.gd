@@ -7,10 +7,11 @@ const jump_speed = -500
 var catch_wall_speed = 0
 const gravity = 2000
 const acceleration = max_speed/0.2
-const air_acceleration = max_speed/4
+const air_acceleration = max_speed/0.05
 const max_jump_cont = 2
 var jump_cont = 0
 var is_wall_on_right = false
+
 
 # 状态机
 var state_machine : StateMachine
@@ -38,7 +39,8 @@ func _ready():
 	pass
 
 func _physics_process(delta):
-	velocity = move_and_slide(velocity,Vector2.UP)  # 移动
+	var snap 
+	velocity = move_and_slide_with_snap(velocity,snap,Vector2.UP)  # 移动
 
 func _input(event):
 	# 跳跃请求
@@ -61,8 +63,8 @@ func _process(delta):
 	
 	if is_on_wall():
 		is_wall_on_right = ray_cast_wall.get_collider() is TileMap
-		print(ray_cast_wall.get_collider())
-		print(is_wall_on_right)
+#		print(ray_cast_wall.get_collider())
+#		print(is_wall_on_right)
 		
 	# 状态机更新
 	state_machine._update(delta)
