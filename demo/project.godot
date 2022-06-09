@@ -65,6 +65,14 @@ catch_wall={
  ]
 }
 
+[layer_names]
+
+2d_physics/layer_1="environment"
+2d_physics/layer_2="player"
+2d_physics/layer_3="enemy"
+2d_physics/layer_5="player_hurt_box"
+2d_physics/layer_6="enemy_hurt_box"
+
 [physics]
 
 common/enable_pause_aware_picking=true

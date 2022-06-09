@@ -32,6 +32,7 @@ onready var coyote_timer = $coyoteTimer  # 跳跃能力保持
 onready var jump_request_timer = $JumpRequestTimer  # 跳跃请求有效
 onready var catch_wall_timer = $CatchWallTimer  # 抓墙持续时间
 onready var catch_request_timer = $CatchRequestTimer  # 抓墙请求有效
+#onready var snap
 
 func _ready():
 	state_machine = StateMachine.new(idle.new(self))  # 实例化状态机 ## 实例化默认状态
@@ -39,8 +40,8 @@ func _ready():
 	pass
 
 func _physics_process(delta):
-	var snap 
-	velocity = move_and_slide_with_snap(velocity,snap,Vector2.UP)  # 移动
+#	snap = Vector2(0,16) if state_machine.current_state.get_name()!="jump" else Vector2.ZERO
+	velocity = move_and_slide(velocity,Vector2.UP)  # 移动 #_with_snap  ,snap
 
 func _input(event):
 	# 跳跃请求
@@ -69,3 +70,8 @@ func _process(delta):
 	# 状态机更新
 	state_machine._update(delta)
 
+
+
+func _on_HitBox_hit():
+	state_machine._change_state(jump.new(self))
+	pass # Replace with function body.

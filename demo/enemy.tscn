@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://HitBox.tscn" type="PackedScene" id=2]
+[ext_resource path="res://HurtBox.tscn" type="PackedScene" id=3]
+
+[node name="enemy" type="KinematicBody2D"]
+
+[node name="Sprite" type="Sprite" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[node name="HitBox" parent="." instance=ExtResource( 2 )]
+
+[node name="HurtBox" parent="." instance=ExtResource( 3 )]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[connection signal="hurt" from="HurtBox" to="." method="_on_HurtBox_hurt"]
+
+[editable path="HitBox"]
+[editable path="HurtBox"]

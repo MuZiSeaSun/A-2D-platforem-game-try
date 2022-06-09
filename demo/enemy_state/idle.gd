@@ -3,7 +3,6 @@ extends State
 var animation_player :AnimationPlayer
 var sprite :Sprite
 
-
 func _init(o).(o):
 	owner = o
 	animation_player = owner.animation_player
@@ -12,9 +11,13 @@ func _init(o).(o):
 	pass
 
 func _enter():
+	animation_player.play("idle")
+	
+	
 	pass
 
 func _execute(delta):
+	
 	pass
 
 func _exit():
